@@ -9,3 +9,6 @@ add_executable (ClothSimulation   "Vec2.h" "Stick.h" "Point.h" "Mouse.h" "Cloth.
 # TODO: Add tests and install targets if needed.
 find_package(SDL2 CONFIG REQUIRED)
 target_link_libraries(ClothSimulation PRIVATE SDL2::SDL2 SDL2::SDL2main)
+
+find_package(imgui CONFIG REQUIRED)
+target_link_libraries(ClothSimulation PRIVATE imgui::imgui)

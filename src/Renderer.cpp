@@ -1,6 +1,11 @@
 #include <iostream>
 #include "Renderer.h"
 
+// imgui
+#include "imgui.h"
+#include "imgui_impl_sdl.h"
+#include "imgui_impl_sdlrenderer.h"
+
 
 Renderer::~Renderer()
 {
@@ -22,7 +27,7 @@ bool Renderer::Setup()
 	windowWidth = displayMode.w;
 	windowHeight = displayMode.h;
 
-	window = SDL_CreateWindow(NULL, 0, 0, windowWidth, windowHeight, SDL_WINDOW_BORDERLESS);
+	window = SDL_CreateWindow(NULL, 0, 0, windowWidth, windowHeight, SDL_WINDOW_RESIZABLE); // SDL_WINDOW_BORDERLESS
 	if (!window)
 	{
 		std::cerr << "Error initializing SDL window" << std::endl;
