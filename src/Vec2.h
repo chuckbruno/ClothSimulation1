@@ -40,4 +40,10 @@ struct Vec2
 		result.y = y / n;
 		return result;
 	}
+
+	float Length2(const Vec2& rhs) const
+	{
+		float result = x * rhs.x + y * rhs.y;
+		return result;
+	}
 };

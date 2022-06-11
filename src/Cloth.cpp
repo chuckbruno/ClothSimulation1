@@ -3,6 +3,8 @@
 #include "Stick.h"
 #include "Renderer.h"
 
+#include <iostream>
+
 
 Cloth::Cloth(int width, int height, int spacing, int startX, int startY)
 {
@@ -52,12 +54,18 @@ Cloth::~Cloth()
 	}
 }
 
-void Cloth::Update(Renderer* renderer, Mouse* mouse, float deltaTime)
+void Cloth::Update(Renderer* renderer, Mouse* mouse, float deltaTime, float density, ImVec2& wind_direction, Vec2 windPos)
 {
+	float param = 200000000;
 	for (int i = 0; i < points.size(); ++i)
 	{
 		Point* p = points[i];
-		p->Update(deltaTime, drag, gravity, elasticity, mouse, renderer->GetWindowWidth(), renderer->GetWindowHeight());
+		Vec2 pointPos = p->GetPosition();
+		float dist = pointPos.Length2(windPos);
+		float ratio = 1.0f / dist;
+		Vec2 wind{ wind_direction.x * density * param * ratio, wind_direction.y * density * param * ratio };
+		Vec2 accelaration = wind + gravity;
+		p->Update(deltaTime, drag, accelaration, elasticity, mouse, renderer->GetWindowWidth(), renderer->GetWindowHeight());
 	};
 
 	for (int i = 0; i < sticks.size(); ++i)
@@ -65,7 +73,6 @@ void Cloth::Update(Renderer* renderer, Mouse* mouse, float deltaTime)
 		Stick* s = sticks[i];
 		s->Update();
 	}
-
 
 }
 

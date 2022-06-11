@@ -3,6 +3,12 @@
 #include "Renderer.h"
 #include "Mouse.h"
 #include "Cloth.h"
+#include "Wind.h"
+
+// imgui
+#include "imgui.h"
+#include "imgui_impl_sdl.h"
+#include "imgui_impl_sdlrenderer.h"
 
 
 bool Application::IsRunning() const
@@ -32,6 +38,7 @@ void Application::Input()
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
+		ImGui_ImplSDL2_ProcessEvent(&event);
 		switch (event.type)
 		{
 		case SDL_QUIT:
@@ -94,7 +101,10 @@ void Application::Update()
 {
 	Uint32 currentTime = SDL_GetTicks();
 	float deltaTime = (currentTime - lastUpdateTime) / 1000.0f;
-	cloth->Update(renderer, mouse, deltaTime);
+	float density = Wind::density;
+	ImVec2 windDirection = Wind::windDirection;
+	Vec2 windPos = Wind::windPosition;
+	cloth->Update(renderer, mouse, deltaTime, density, windDirection, windPos);
 	lastUpdateTime = currentTime;
 }
 

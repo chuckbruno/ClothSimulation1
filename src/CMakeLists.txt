@@ -4,7 +4,7 @@
 cmake_minimum_required (VERSION 3.8)
 
 # Add source to this project's executable.
-add_executable (ClothSimulation   "Vec2.h" "Stick.h" "Point.h" "Mouse.h" "Cloth.h" "Renderer.h" "Application.h" "Main.cpp" "Point.cpp" "Stick.cpp" "Renderer.cpp" "Mouse.cpp" "Cloth.cpp" "Application.cpp")
+add_executable (ClothSimulation   "Vec2.h" "Stick.h" "Point.h" "Mouse.h" "Cloth.h" "Renderer.h" "Application.h" "Main.cpp" "Point.cpp" "Stick.cpp" "Renderer.cpp" "Mouse.cpp" "Cloth.cpp" "Application.cpp" "Wind.h" "Wind.cpp")
 
 # TODO: Add tests and install targets if needed.
 find_package(SDL2 CONFIG REQUIRED)

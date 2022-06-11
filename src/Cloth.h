@@ -10,8 +10,7 @@ public:
 	Cloth() = default;
 	Cloth(int width, int height, int spacing, int startX, int startY);
 	~Cloth();
-
-	void Update(class Renderer* renderer, class Mouse* mouse, float deltaTime);
+	void Update(class Renderer* renderer, class Mouse* mouse, float deltaTime, float density, class ImVec2& windDirection, Vec2 windPos);
 	void Draw(class Renderer* renderer) const;
 
 private:
